@@ -1,6 +1,16 @@
+SampleApp::Application.routes.draw do
+  resources :users
+  resources :sessions,   only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
+
 Rails.application.routes.draw do
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   
   get '/signup', to: 'users#new'
+  get '/signin', to: 'sessions#new',       via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  
   get '/help', to: 'static_pages#help'
   
   get '/home', to: 'static_pages#home'
