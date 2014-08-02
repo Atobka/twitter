@@ -1,9 +1,5 @@
-SampleApp::Application.routes.draw do
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+
+ 
 
 Rails.application.routes.draw do
    resources :sessions,      only: [:new, :create, :destroy]
@@ -22,7 +18,11 @@ Rails.application.routes.draw do
   
    get '/about', to: 'static_pages#about'
 
-  resources :posts
+   resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
